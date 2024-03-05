@@ -4,9 +4,6 @@ exports.getQuiz = async(req,res)=>{
      try {
         const {collectionName} = req.body;
         var arrayQuizzies = await quizService.getQuiz(collectionName);
-
-        console.log(collectionName,arrayQuizzies);
-
         function getRandomInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
@@ -20,6 +17,7 @@ exports.getQuiz = async(req,res)=>{
          for(let random = 0; random<20 ;random++){
              quizObj.push(arrayQuizzies[[...randomSet][random]]);
          }
+         console.log(collectionName,quizObj);
          res.json({status:true,message:quizObj});
         
      } catch (error) {
