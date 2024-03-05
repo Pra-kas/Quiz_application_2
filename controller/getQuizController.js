@@ -5,7 +5,7 @@ exports.getQuiz = async(req,res)=>{
         const {collectionName} = req.body;
         var arrayQuizzies = await quizService.getQuiz(collectionName);
 
-        console.log(arrayQuizzies);
+        console.log(collectionName,arrayQuizzies);
 
         function getRandomInt(min, max) {
             min = Math.ceil(min);
