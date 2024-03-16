@@ -1,5 +1,5 @@
 const userService = require('../service/userService');
-
+console.log("Prakash");
  exports.register = async(req,res,next) =>{
     try{
         const {email,password,confirmPassword} = req.body;
