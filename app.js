@@ -6,6 +6,7 @@ const loginRouter = require('./router/loginRouter');
 const quizRouter = require('./router/quizRouter');
 const getQuizRouter = require('./router/getQuizRouter');
 const questionValidation = require('./router/questionValidation')
+const profileDetails = require('./router/fetchProfileDetailsRouter')
 const app = express();
 
 app.use(cors());
@@ -15,5 +16,5 @@ app.use('/',loginRouter);
 app.use('/',quizRouter);
 app.use('/',getQuizRouter);
 app.use('/',questionValidation);
-
+app.use('/',profileDetails);
 module.exports = app;
