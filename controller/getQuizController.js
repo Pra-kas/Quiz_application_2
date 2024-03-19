@@ -1,9 +1,12 @@
-let answer_list = [];
 const quizService = require('../service/quizService');
-
+const sessionService = require("../service/sessionService");
+let answer_list = [];
 exports.getQuiz = async (req, res) => {
-  console.log("Hi broo");
   try {
+    const session = req.get("session");
+    const sessionResult = await sessionService.validateSession(session);
+    console.log(sessionResult);
+    if(sessionResult!==null){
     const { collectionName } = req.body;
     let arrayQuizzies = await quizService.getQuiz(collectionName);
 
@@ -27,19 +30,24 @@ exports.getQuiz = async (req, res) => {
       quizObj = { _id, question, optionA, optionB, optionC, optionD, __v ,correctAnswer};
       answer_list.push(quizObj);
     }
-
-    res.json({ status: true, message: quizArray }); // Send array of quiz objects
+    console.log(quizArray);
+    res.json({ status: true, message: quizArray });
+    }else{
+      console.log("dtyfgjhvnbgfuyhkvbnhgjyhkjb");
+      res.json({status:false,message:143});
+    }
+     // Send array of quiz objects
   } catch (error) {
     res.json({ status: false, message: error.message });
   }
 }
 
 exports.questionValidation = async (req, res) => {
-  console.log("Kumar");
   try {
     const { index, answer } = req.body;
-    console.log(answer_list[index]['correctAnswer']);
+  
     if (answer_list[index]["correctAnswer"] == answer) {
+      console.log("hello question validation ",answer_list[index]);
       res.json({ status: true, message: '1' });
     } else {
       res.json({ status: true, message: '0' });

@@ -21,6 +21,12 @@ class SessionService{
                 return "failed";
             }   
     }
+
+    static async validateSession(session){
+        const collection = db.collection('sessions');
+        var validSession = await collection.findOne({"session":session});
+        return validSession;
+    }
 }
 
 module.exports = SessionService;

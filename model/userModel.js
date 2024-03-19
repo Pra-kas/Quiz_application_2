@@ -1,6 +1,5 @@
 const mongo = require('mongoose');
 const db = require('../config/db');
-const bcrypt = require('bcrypt');
 
 const { Schema } = mongo;
 
